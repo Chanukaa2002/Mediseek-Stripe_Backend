@@ -1,17 +1,16 @@
 import express from "express";
-import dotenv from 'dotenv'
-import cors from 'cors'
-import Stripe from "stripe";
+import dotenv from "dotenv";
+import cors from "cors";
+import { handleCreatePaymentSession } from "./controllers/paymentController.js";
 
-dotenv.config()
-const app = express()
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-app.use(cors())
-app.use(express.json())
-const PORT = process.env.PORT || 5000
+dotenv.config();
+const app = express();
+app.use(cors());
+app.use(express.json());
 
+app.post("/payment-sheet", handleCreatePaymentSession);
+const PORT = process.env.PORT || 5000;
 
-
-app.listen(PORT,()=>{
-    console.log(`Server runing => ${PORT}`); 
-})
+app.listen(PORT, () => {
+  console.log(`Server runing => ${PORT}`);
+});
