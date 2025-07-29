@@ -9,6 +9,9 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/payment-sheet", handleCreatePaymentSession);
+app.get("/", (req, res) => {
+  res.send("Hello wrold!");
+});
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
